@@ -73,10 +73,11 @@ module.exports = {
 
 
     async create(req, res) {
+        console.log(JSON.stringify(req.body));
         var allUserData = req.body; 
 
         var Atividade = {
-            ID_CadastraAtvidade: allUserData.ID_CadastraAtvidade,
+  
             Titulo: allUserData.Titulo,
             Local: allUserData.Local,
             Descricao: allUserData.Descricao,

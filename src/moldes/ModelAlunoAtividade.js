@@ -213,7 +213,8 @@ module.exports = {
             var ID_CadastraAtividade =  await connection('tb_atividade').insert(ID_CadastraAtividade);
 
             return ID_CadastraAtividade;
-        } catch (error) {      
+        } catch (error) {  
+            console.log("erro = ", JSON.stringify(error));    
             
             return error.errno;          
         }
