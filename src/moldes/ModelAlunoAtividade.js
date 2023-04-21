@@ -17,7 +17,7 @@ module.exports = {
                     'A.Duracao as Duracao',
 
                 )
-                .orderBy('id', 'Titulo', 'Local',  
+                .orderBy('ID_CadastrarAtividade', 'Titulo', 'Local',  
                  'Descricao', 'Imagem',  'Data',  'Hora',  'Duracao');
 
         

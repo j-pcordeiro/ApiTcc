@@ -1,3 +1,4 @@
+const { json } = require('express');
 const connection = require('../database/config');
 
 module.exports = {
@@ -5,15 +6,22 @@ module.exports = {
     async findAll() {
         try {
             var ModelAtividade = await 
-                connection('tb_atividade as at')
+                connection('tb_atividade')
                 .select(
-                    'at.ID_AlunoAtividade as ID_AlunoAtividade', 
-                    'at.ID_Aluno as ID_Aluno', 
-                    'at.ID_CadastraAtividade as ID_CadastraAtividade',
-                    'at.Status as Status' 
+                    'tb_atividade.ID_CadastraAtividade as ID_CadastraAtividade',
+                    'tb_atividade.Titulo as Titulo', 
+                    'tb_atividade.Descricao as Descricao',
+                    'tb_atividade.Local as Local' ,
+                    'tb_atividade.Imagem as Imagem',
+                    'tb_atividade.Tipo as Tipo',
+                    'tb_atividade.Data as Data',
+                    'tb_atividade.Hora as Hora',
+                    'tb_atividade.Duracao as Duracao'
+
                 )
-                .orderBy('ID_AlunoAtividade', 'ID_Aluno','ID_CadastraAtividade',
-                'Status');
+                .orderBy('ID_CadastraAtividade', 'Titulo','Descricao','Local',
+                'Imagem','Local','Imagem','Tipo','Data','Hora',
+                'Duracao');
         
             return ModelAtividade
 
@@ -38,15 +46,15 @@ module.exports = {
         }
         
     },
-    async create(ID_Aluno) {
+    async create(atividade) {
         try {
         
-            var ID_Aluno =  await connection('tb_usuario').insert(ID_Aluno);
+            var id =  await connection('tb_atividade').insert(atividade);
 
-            return ID_Aluno;
+            return id;
         } catch (error) {      
             
-            return error.errno;          
+            return error;          
         }
     },
     async findID_CadastraAtividade(ID_CadastraAtividade) {
@@ -66,15 +74,15 @@ module.exports = {
         }
         
     },
-    async create(ID_CadastraAtividade) {
+    async create(atv) {
         try {
         
-            var ID_CadastraAtividade =  await connection('tb_atividade').insert(ID_CadastraAtividade);
+            var ID_CadastraAtividade =  await connection('tb_atividade').insert(atv);
 
             return ID_CadastraAtividade;
         } catch (error) {      
-            
-            return error.errno;          
+            console.log("Erro na model", JSON.stringify(error))
+            return error;          
         }
     },
     async findStatus(Status) { 
@@ -109,18 +117,6 @@ module.exports = {
             
         }
         
-    },
-
-    async create(ID_AlunoAtividade) {
-        try {
-        
-            var ID_AlunoAtividade =  await connection('tb_alunoatividade').insert(ID_AlunoAtividade);
-
-            return ID_AlunoAtividade;
-        } catch (error) {      
-            
-            return error.errno;          
-        }
     }
 }
 

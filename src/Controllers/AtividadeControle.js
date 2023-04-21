@@ -1,5 +1,5 @@
 
-const AtividadeModel = require("../moldes/ModelAlunoAtividade");
+const AtividadeModel = require("../moldes/ModelAtividade");
 
 
 module.exports = {
@@ -73,7 +73,7 @@ module.exports = {
 
 
     async create(req, res) {
-        console.log(JSON.stringify(req.body));
+        console.log("Inicio da controller", JSON.stringify(req.body));
         var allUserData = req.body; 
 
         var Atividade = {
@@ -88,8 +88,15 @@ module.exports = {
             Duracao: allUserData.Duracao,
 
         }
-
-        var result = await AtividadeModel.create(Atividade);
+        try{
+            var result = await AtividadeModel.create(Atividade);
+            console.log("fim  da controller", JSON.stringify(result));
+        }
+        catch(error)
+        {
+            console.log("Error - controller", JSON.stringify(error));
+        }
+        
 
         return res.json(result);
     }
