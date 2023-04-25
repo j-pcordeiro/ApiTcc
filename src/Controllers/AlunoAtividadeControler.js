@@ -27,10 +27,10 @@ module.exports = {
             return res.json(result);
         }
     },
-    async findID_Aluno(req, res) {
-        const { ID_ALUNO } = req.params;
+    async findID_Usuario(req, res) {
+        const { ID_Usuario } = req.params;
 
-        var result = await Usuarios.findID_Aluno(ID_ALUNO);
+        var result = await Usuarios.findID_Aluno(ID_Usuario);
 
         if (result === -1) {
             return res.status(404).json("User not found")
@@ -55,8 +55,8 @@ module.exports = {
 
         var AtividadeC = {
             ID_CadastraAtividade: allUserData.ID_CadastraAtividade,
-            ID_Aluno: allUserData.ID_Aluno,
-            ID_AlunoAtividade: allUserData.findID_AlunoAtivID_AlunoAtividadeidade
+            ID_Usuario: allUserData.ID_Usuario,
+            ID_AlunoAtividade: allUserData.findID_AlunoAtividade
         }
 
         

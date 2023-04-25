@@ -7,13 +7,11 @@ module.exports = {
             var users = await 
                 connection('TB_Usuario as u')
                 .select(
-                    'u.IDUSUARIO as id', 
-                    'u.Matricula as Matricula', 
-                    'u.Nome as nome', 
-                    'u.Senha as senha',
-                    'u.Status as status'
+                    'u.ID_Usuario as ID_Usuario', 
+                    'u.MatriculaUsuario as MatriculaUsuario', 
+                    'u.SenhaUsuario as SenhaUsuario', 
                 )
-                .orderBy('id', 'desc');
+                .orderBy('ID_Usuario', 'MatriculaUsuario','SenhaUsuario');
         
             return users
 
@@ -25,7 +23,7 @@ module.exports = {
     async findById(userId) {
         try {
             const user = await connection('TB_Usuario')
-            .where('IDUSUARIO', userId)
+            .where('ID_Usuario', userId)
             .first();
 
             if(user === null || user === undefined) {

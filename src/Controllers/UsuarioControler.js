@@ -9,21 +9,10 @@ module.exports = {
         return res.json(users);  
     },
 
-    async findID_Aluno(req, res) {
-        const { ID_Aluno } = req.params;
+    async findID_Usuario(req, res) {
+        const { ID_Usuario } = req.params;
 
-        var result = await UsuarioModel.findID_Aluno(ID_Aluno);
-
-        if (result === -1) {
-            return res.status(404).json("User not found")
-        }else{            
-            return res.json(result);
-        }
-    },
-    async findID_Coordenador(req, res) {
-        const { ID_Coordenador } = req.params;
-
-        var result = await UsuarioModel.findID_Coordenador(ID_Coordenador);
+        var result = await UsuarioModel.findID_Usuario(ID_Usuario);
 
         if (result === -1) {
             return res.status(404).json("User not found")
@@ -31,51 +20,26 @@ module.exports = {
             return res.json(result);
         }
     },
-    async findMatriculaAluno (req, res) { 
-        const { MatriculaAluno  } = req.params;
-        var Vu = await UsuarioModel.findMatriculaAluno(MatriculaAluno);
+    async findMatriculaUsuario (req, res) { 
+        const { MatriculaUsuario  } = req.params;
+        var Vu = await UsuarioModel.findMatriculaUsuario(MatriculaUsuario);
         
         return res.json(Vu);  
     },
-    async findMatriculaCoordenador (req, res) { 
-        const { MatriculaCoordenador  } = req.params;
-        var Vu = await UsuarioModel.findMatriculaCoordenador(MatriculaCoordenador);
+    async findSenhaUsuario(req, res) { 
+        const { SenhaUsuario  } = req.params;
+        var Vu = await UsuarioModel.findSenhaUsuario(SenhaUsuario);
         
         return res.json(Vu);  
     },
-    async findSenhaAluno (req, res) { 
-        const { SenhaAluno  } = req.params;
-        var Vu = await UsuarioModel.findSenhaAluno(SenhaAluno);
-        
-        return res.json(Vu);  
-    },
-    async findSenhaCoordenador (req, res) { 
-        const { SenhaCoordenador  } = req.params;
-        var Vu = await UsuarioModel.findSenhaCoordenador(SenhaCoordenador);
-        
-        return res.json(Vu);  
-    },
-    async findstatus (req, res) { 
-        const { status  } = req.params;
-        var Vu = await UsuarioModel.findstatus(status);
-        
-        return res.json(Vu);  
-    },
-
-
-
 
     async create(req, res) {
         var allUserData = req.body; 
 
         var user = {
-            ID_Aluno: allUserData.ID_Aluno,
-            ID_Coordenador:allUserData.ID_Coordenador,
-            MatriculaAluno: allUserData.MatriculaAluno,
-            MatriculaCordenador: allUserData.MatriculaCordenador,
-            SenhaAluno: allUserData.SenhaAluno,
-            SenhaCoordenador: allUserData.SenhaCoordenador,
-            status: allUserData.Status,
+            ID_Usuario: allUserData.ID_Usuario,
+            MatriculaUsuario: allUserData.MatriculaUsuario,
+            SenhaUsuario: allUserData.SenhaUsuario,
         }
 
         var result = await UsuarioModel.create(user);
