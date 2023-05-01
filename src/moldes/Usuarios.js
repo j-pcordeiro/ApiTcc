@@ -5,7 +5,7 @@ module.exports = {
     async findAll() {
         try {
             var users = await 
-                connection('TB_Usuario as u')
+                connection('tb_usuario as u')
                 .select(
                     'u.ID_Usuario as ID_Usuario', 
                     'u.MatriculaUsuario as MatriculaUsuario', 
@@ -22,7 +22,7 @@ module.exports = {
     
     async findById(userId) {
         try {
-            const user = await connection('TB_Usuario')
+            const user = await connection('tb_usuario')
             .where('ID_Usuario', userId)
             .first();
 
@@ -41,7 +41,7 @@ module.exports = {
     async create(user) {
         try {
         
-            var userID =  await connection('TB_Usuario').insert(user);
+            var userID =  await connection('tb_usuario').insert(user);
 
             return userID;
         } catch (error) {      
