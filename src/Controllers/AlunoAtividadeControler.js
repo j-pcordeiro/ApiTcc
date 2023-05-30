@@ -1,6 +1,6 @@
 const MAtividade= require("../moldes/ModelAtividade");
 const ModelAtividade= require("../moldes/ModelAlunoAtividade");
-const Usuarios = require("../moldes/Usuarios");
+const Usuarios = require("../moldes/UserModel");
 
 
 module.exports = {
