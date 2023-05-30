@@ -1,5 +1,5 @@
 const Sequileze = require('sequelize');
-const db = new Sequileze("tccfinal_db","root", "Cordeiro@123",
+const db = new Sequileze("tccfinal_db","root", "Anita123",
 {
     host:'localhost',
     dialect:'mysql'
