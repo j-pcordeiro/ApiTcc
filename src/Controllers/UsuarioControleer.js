@@ -75,29 +75,34 @@ module.exports = {
       console.log("senha =  ", senha);
       console.log("senha cript =  ",  user[0].password);
       bcrypt.compare(senha, user[0].password, (error, response) => {
-          console.log("res =  ", JSON.stringify(response));
-          if (error) {
-            res.send(error);
-            console.log("ERRO NO BCRYPT", error);
-          }
+          console.log("res ==  ", JSON.stringify(response) );
+          
           if (response) {
-            res.send({ msg: "Usuário logado" });
-          } else {
-            console.log("c = ", JSON.stringify(response));
-           // res.send({ msg: "Senha incorreta" });
+            console.log("AUT OK");
+             res.send(user);
+          } 
+          else {
+            console.log("AUT Não OK");
+            res.sendStatus(401);
           }
-      });
+          
+          
+         
+         
+      });/*
       (err, result) => {
           console.log("resposta=", result);
           if (err) {  
             console.log("erro=", err);
-            res.send(err);
+            //res.send(err);
+            res.sendStatus(401).json({ msg: "erro na autenticacao" });
           }
           if (result.length > 0) {
            // console.log("senha enc ",  bcrypt.hash(senha, 8));
             bcrypt.compare(senha, result[0].password, (error, response) => {
               if (error) {
                 res.send(error);
+
               }
               if (response) {
                 res.send({ msg: "Usuário logado" });
@@ -109,7 +114,7 @@ module.exports = {
           } else {
             res.send({ msg: "Usuário não registrado!" });
           }
-        }
+        }*/
       },
       async Cadastrar(req, res) {
         const email = req.body.email;
