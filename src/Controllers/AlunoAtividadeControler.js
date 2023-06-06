@@ -1,5 +1,5 @@
 const MAtividade= require("../moldes/ModelAtividade");
-const ModelAtividade= require("../moldes/ModelAlunoAtividade");
+const ModelAlunoAtividade= require("../moldes/ModelAlunoAtividade");
 const Usuarios = require("../moldes/UserModel");
 
 
@@ -19,7 +19,7 @@ module.exports = {
     async findID_AlunoAtividade(req, res) {
         const { AlunoAtividade } = req.params;
 
-        var result = await MAtividade.findID_AlunoAtividade(AlunoAtividade);
+        var result = await ModelAlunoAtividade.findID_AlunoAtividade(AlunoAtividade);
 
         if (result === -1) {
             return res.status(404).json("User not found")
@@ -41,7 +41,7 @@ module.exports = {
     async findID_CadastraAtividade(req, res) {
         const { CadastraAtividade } = req.params;
 
-        var result = await ModelAtividade.findID_CadastraAtividade(CadastraAtividade);
+        var result = await ModelAlunoAtividade.findID_CadastraAtividade(CadastraAtividade);
 
         if (result === -1) {
             return res.status(404).json("User not found")
@@ -61,7 +61,7 @@ module.exports = {
 
         
 
-        var result = await MoldelUnidadeMedida.create(UnidadeMedida);
+        var result = await ModelAlunoAtividade.create(AtividadeC);
 
         return res.json(result);
     }
