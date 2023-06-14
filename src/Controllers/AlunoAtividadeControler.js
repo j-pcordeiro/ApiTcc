@@ -10,6 +10,11 @@ module.exports = {
         
         return res.json(Atividade);  
     },
+    async inscrever(req, res) { 
+        var Atividade = await ModelAlunoAtividade.inscrever();
+        
+        return res.json(Atividade);  
+    },
     async findStatus(req, res) { 
         const { Status } = req.params;
         var status = await MAtividade.findStatus(Status);

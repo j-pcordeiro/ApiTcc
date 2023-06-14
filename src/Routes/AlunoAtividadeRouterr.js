@@ -17,5 +17,6 @@ router.get('/:ID_AlunoAtividade', AlunoAtividadeControler.findID_AlunoAtividade)
 router.get('/:Status', AlunoAtividadeControler.findStatus)
 
 router.post('/create',AtividadeControler.create);
+router.post('/inscrever',AlunoAtividadeControler.inscrever);
 
 module.exports = router;

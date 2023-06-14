@@ -19,7 +19,7 @@ module.exports = {
             const user = await connection('tb_usuario')
             .where('ID_Usuario', userId)
             .first()
-            .select('ID_Usuario', 'email', 'password');
+            .select('ID_Usuario', 'email', 'password', 'Nome','Curso','Perfil');
 
             console.log('user -> ', JSON.stringify(user));
 
@@ -66,6 +66,57 @@ module.exports = {
             }
             else {
                 return user;
+            }
+        } catch (error) {
+           // console.log("ERR " + error);
+        }
+        
+    },
+    async findByNome(Nome) {
+        try {
+            const Nome = await connection('tb_usuario')
+            .where('Nome', Nome)
+            .first();
+
+            if(Nome === null || Nome === undefined) {
+                return -1;
+            }
+            else {
+                return Nome;
+            }
+        } catch (error) {
+           // console.log("ERR " + error);
+        }
+        
+    },
+    async findByCurso(Curso) {
+        try {
+            const Curso = await connection('tb_usuario')
+            .where('Curso', Curso)
+            .first();
+
+            if(Curso === null || Curso === undefined) {
+                return -1;
+            }
+            else {
+                return Curso;
+            }
+        } catch (error) {
+           // console.log("ERR " + error);
+        }
+        
+    },
+    async findByPerfil(Perfil) {
+        try {
+            const Perfil = await connection('tb_usuario')
+            .where('Perfil', Perfil)
+            .first();
+
+            if(Perfil === null || Perfil === undefined) {
+                return -1;
+            }
+            else {
+                return Perfil;
             }
         } catch (error) {
            // console.log("ERR " + error);

@@ -9,6 +9,9 @@ router.get('/', verifyJWT,  UserController.findAll);
 router.get('/:id', verifyJWT,  UserController.findById);
 router.get('/:email',verifyJWT,UserController.findByEmail)
 router.get('/:password',verifyJWT,UserController.findByPassoword)
+router.get('/:Nome',verifyJWT,UserController.findByNome)
+router.get('/:Curso',verifyJWT,UserController.findByCurso)
+router.get('/:Perfil',verifyJWT,UserController.findByPerfil)
 //router.post('/', UserController.create);
 router.post('/login', UserController.login);
 router.post('/Cadastrar', UserController.Cadastrar);

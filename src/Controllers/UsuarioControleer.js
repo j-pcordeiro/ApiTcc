@@ -36,6 +36,27 @@ module.exports = {
         
         return res.json(Vu);  
     },
+    async findByNome(req, res) { 
+      console.log('front ', JSON.stringify(req));
+      const { Nome  } = req.params;
+      var Vu = await UsuarioModel.findByNome(Nome);
+      
+      return res.json(Vu);  
+  },
+  async findByCurso(req, res) { 
+    console.log('front ', JSON.stringify(req));
+    const { Curso  } = req.params;
+    var Vu = await UsuarioModel.findByCurso(Curso);
+    
+    return res.json(Vu);  
+},
+async findByPerfil(req, res) { 
+    console.log('front ', JSON.stringify(req));
+    const { Perfil  } = req.params;
+    var Vu = await UsuarioModel.findByPerfil(Perfil);
+    
+    return res.json(Vu);  
+},
 
     async create(req, res) {
         var allUserData = req.body; 
@@ -119,6 +140,9 @@ module.exports = {
       async Cadastrar(req, res) {
         const email = req.body.email;
         const password = req.body.password;
+        const Nome = req.body.Nome;
+        const Curso = req.body.Curso;
+        const Perfil = req.body.Perfil;
       
         try {
           const user = await db.query("SELECT * FROM tb_usuario WHERE email = ?" ,
@@ -132,8 +156,8 @@ module.exports = {
             let j = await bcrypt.hashSync(password, saltRounds);
             console.log("j=",j);
             db.query(
-              "INSERT INTO tb_usuario (email, password) VALUES (?, ?)",{
-                replacements:[email, j],
+              "INSERT INTO tb_usuario (email, password, Nome, Curso, Perfil) VALUES (?, ?, ?, ?, ?)",{
+                replacements:[email, j, Nome, Curso, Perfil],
                 type: QueryTypes.INSERT
               });
             let s = await bcrypt.hashSync(password, saltRounds, (err, hash) => {
@@ -143,8 +167,8 @@ module.exports = {
               } else {
                 console.log("insert",email, password);
                 db.query(
-                  "INSERT INTO tb_usuario (email, password) VALUES (?, ?)",{
-                    replacements:[email, j],
+                  "INSERT INTO tb_usuario (email, password, Nome, Curso, Perfil) VALUES (?, ?, ?, ?, ? )",{
+                    replacements:[email, j, Nome, Curso, Perfil],
                     type: QueryTypes.INSERT
                   }
                 ,

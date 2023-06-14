@@ -5,14 +5,15 @@ module.exports = {
     async findAll() {
         try {
             var Atividade = await 
-                connection('tb_alunoatividade as A')
+                connection('tb_alunoatividade')
                 .select(
-                    'A.ID_AlunoAtividade as ID_AlunoAtividade',
-                    'A.ID_Usuario as ID_Usuario',
-                    'A.ID_CadastrarAtividade as ID_CadastrarAtividade'
+                    'tb_alunoatividade.ID_AlunoAtividade as ID_AlunoAtividade',
+                    'tb_alunoatividade.ID_CadastrarAtividade as ID_CadastrarAtividade',
+                    'tb_alunoatividade.Status as Status',
+                    'tb_alunoatividade.ID_Usuario as ID_Usuario'
 
                 )
-                .orderBy('ID_AlunoAtividade', 'ID_CadastrarAtividade', 'ID_Usuario');
+                .orderBy('ID_AlunoAtividade', 'ID_CadastrarAtividade', 'Status','ID_Usuario');
 
         
             return Atividade
@@ -20,6 +21,25 @@ module.exports = {
         } catch (error) {
             console.log(error);
         }  
+    },
+    async inscrever( req,res ) //Antes estava o (usuario)
+    {
+        console.log("erro = ", JSON.stringify(req));  
+        try {
+        var allUserData = req.body ; // Acrescentei
+           var usuario = {
+                ID_AlunoAtividade: allUserData.ID_AlunoAtividade,
+                ID_CadastraAtividade: allUserData.ID_CadastraAtividade,
+                Status: allUserData.Status,
+                ID_Usuario: allUserData.ID_Usuario
+            }
+            var inscrever =  await connection('tb_AlunoAtividade').insert(usuario);
+            return inscrever;
+        } catch (error) {  
+            console.log("erro = ", JSON.stringify(error));    
+            console.log(JSON.stringify("Erro ----"),error)
+            return error.errno;          
+        }
     },
     async findID_CadastraAtividade(ID_CadastraAtividade) {
         try {
