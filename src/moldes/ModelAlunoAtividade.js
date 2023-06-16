@@ -8,12 +8,11 @@ module.exports = {
                 connection('tb_alunoatividade')
                 .select(
                     'tb_alunoatividade.ID_AlunoAtividade as ID_AlunoAtividade',
-                    'tb_alunoatividade.ID_CadastrarAtividade as ID_CadastrarAtividade',
                     'tb_alunoatividade.Status as Status',
                     'tb_alunoatividade.ID_Usuario as ID_Usuario'
 
                 )
-                .orderBy('ID_AlunoAtividade', 'ID_CadastrarAtividade', 'Status','ID_Usuario');
+                .orderBy('ID_AlunoAtividade','Status','ID_Usuario');
 
         
             return Atividade
@@ -22,16 +21,17 @@ module.exports = {
             console.log(error);
         }  
     },
-    async inscrever( req,res ) //Antes estava o (usuario)
+    async inscrever(inscricao ) //Antes estava o (usuario)
     {
-        console.log("erro = ", JSON.stringify(req));  
+        //console.log("erro = ", JSON.stringify(req));  
         try {
-        var allUserData = req.body ; // Acrescentei
+        // Acrescentei
            var usuario = {
-                ID_AlunoAtividade: allUserData.ID_AlunoAtividade,
-                ID_CadastraAtividade: allUserData.ID_CadastraAtividade,
-                Status: allUserData.Status,
-                ID_Usuario: allUserData.ID_Usuario
+               
+                ID_CadastraAtividade: inscricao.ID_CadastraAtividade,
+                Status: inscricao.Status,
+                ID_Usuario: inscricao.ID_Usuario,
+            
             }
             var inscrever =  await connection('tb_AlunoAtividade').insert(usuario);
             return inscrever;

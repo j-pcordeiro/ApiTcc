@@ -6,12 +6,14 @@ const Usuarios = require("../moldes/UserModel");
 module.exports = {
 
     async findAll(req, res) { 
-        var Atividade = await MAtividade.findAll();
+        var Atividade = await ModelAlunoAtividade.findAll();
         
         return res.json(Atividade);  
     },
     async inscrever(req, res) { 
-        var Atividade = await ModelAlunoAtividade.inscrever();
+        console.log("inscrever controller ", req.body);
+        let inscricao = req.body;
+        var Atividade = await ModelAlunoAtividade.inscrever(inscricao);
         
         return res.json(Atividade);  
     },
