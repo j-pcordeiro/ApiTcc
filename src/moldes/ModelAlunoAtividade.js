@@ -36,7 +36,7 @@ module.exports = {
             var inscrever =  await connection('tb_AlunoAtividade').insert(usuario);
             return inscrever;
         } catch (error) {  
-            console.log("erro = ", JSON.stringify(error));    
+            console.log("erro na model = ", JSON.stringify(error));    
             console.log(JSON.stringify("Erro ----"),error)
             return error.errno;          
         }
